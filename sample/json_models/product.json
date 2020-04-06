@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "name": "biere",
+  "price": 1.2,
+  "stock": 20,
+  "informations": {
+    "id_brewery": 1,
+    "id_style": 1,
+    "id_country": 1
+  },
+  "id_pics": 3,
+  "id_bills": 1
+}
