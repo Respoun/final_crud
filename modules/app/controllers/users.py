@@ -14,7 +14,7 @@ def user():
     if request.method == 'GET':
         query = request.args
         try:
-            data = mongo.db.customers.find_one(query)
+            data = mongo.db.Customers.find_one(query)
             return jsonify(data), 200
         except:
             return jsonify("je suis une erreur", 500)
