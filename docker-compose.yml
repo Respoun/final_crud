@@ -9,4 +9,4 @@ services:
   environment:
    - ENV=development
    - PORT=4000
-   - DB=mongodb://user:jesuisunelicorne1@ds155164.mlab.com:55164/ubeer
+   - DB=mongodb://user:jesuisunelicorne1@ds155164.mlab.com:55164/ubeer?retryWrites=false
