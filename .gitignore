@@ -13,7 +13,6 @@ __pycache__/
 .Python
 mongo/generate/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
