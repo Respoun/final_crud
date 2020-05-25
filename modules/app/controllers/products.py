@@ -1,6 +1,8 @@
-''' controller and routes for bills '''
+'''
+controller and routes for Products (Beers)
+'''
 import os
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 from app import app, mongo
 import logger
 
@@ -14,8 +16,9 @@ def products():
     if request.method == 'GET':
         query = request.args
         try:
-            data = mongo.db.Products.find_one(query)
-            return jsonify(data), 200
+            data = mongo.db.Products.find()
+            for documents in data:
+                return jsonify(documents), 200
         except:
             return jsonify({'ok': False, 'message': 'Database unreachable'}), 500
 
@@ -40,8 +43,7 @@ def products():
 
     if request.method == 'PATCH':
         if data.get('query', {}) != {}:
-            mongo.db.Products.update_one(
-                data['query'], {'$set': data.get('payload', {})})
+            mongo.db.Products.update_one(data['query'], {'$set': data.get('payload', {})})
             return jsonify({'ok': True, 'message': 'record updated'}), 200
         else:
             return jsonify({'ok': False, 'message': 'Bad request parameters!'}), 400

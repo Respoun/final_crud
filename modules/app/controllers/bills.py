@@ -14,8 +14,9 @@ def bills():
     if request.method == 'GET':
         query = request.args
         try:
-            data = mongo.db.Bills.find_one(query)
-            return jsonify(data), 200
+            data = mongo.db.Bills.find()
+            for doc in data:
+                return jsonify(doc), 200
         except:
             return jsonify({'ok': False, 'message': 'Database unreachable'}), 500
 

@@ -1,0 +1,48 @@
+{
+	"Factures(Bills)": {
+		"id": 1,
+		"client_id": 1,
+		"started_date": "11 /02/2020",
+		"ended_date": "12 /02/2020",
+		"payed": true,
+		"sum": 111,
+		"product_id": 1
+	},
+	"Brasseries(Brewery)": {
+		"id": 1,
+		"name": "Brasserie de Paris",
+		"id_country": 1
+	},
+	"Product(produit)": {
+		"id": 1,
+		"name": "biere",
+		"price": 1.2,
+		"stock": 20,
+		"informations": {
+			"id_brewery": 1,
+			"id_style": 1,
+			"id_country": 1
+		},
+		"id_pics": 3,
+		"id_bills": 1
+	},
+	"Client(customer)": {
+		"id": 1,
+		"first_name": "toto",
+		"last_name": "tata",
+		"email": "toto@mail.com",
+		"creation_date": "11/02/2020"
+	},
+	"Pays(country)": {
+		"id": 1,
+		"name": "France"
+	},
+	"Style(style)": {
+		"id": 1,
+		"name": "pale ale"
+	},
+	"Images(image)": {
+		"id": 1,
+		"image": "Image convertie en base 64"
+	}
+}
