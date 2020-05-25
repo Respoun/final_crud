@@ -2,7 +2,7 @@
 import os
 import sys
 import requests
-from flask import jsonify, request, make_response, send_from_directory
+from flask import jsonify, request, make_response, send_from_directory, render_template
 
 ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
 os.environ.update({'ROOT_PATH': ROOT_PATH})
@@ -28,6 +28,10 @@ def not_found(error):
 def index():
     """ static files serve """
     return send_from_directory('dist', 'index.html')
+
+@app.route('/add')
+def add():
+    return render_template('add.html')
 
 
 @app.route('/<path:path>')

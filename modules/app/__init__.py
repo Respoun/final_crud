@@ -17,9 +17,7 @@ class JSONEncoder(json.JSONEncoder):
             return str(o)
         return json.JSONEncoder.default(self, o)
 
-
-
-app = Flask(__name__)
+app = Flask(__name__,template_folder="dist")
 
 app.config['MONGO_URI'] = os.environ.get('DB')
 mongo = PyMongo(app)

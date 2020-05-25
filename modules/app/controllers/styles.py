@@ -3,6 +3,7 @@ import os
 from flask import request, jsonify
 from app import app, mongo
 import logger
+import json
 
 ROOT_PATH = os.environ.get('ROOT_PATH')
 LOG = logger.get_root_logger(
@@ -14,8 +15,12 @@ def styles():
     if request.method == 'GET':
         query = request.args
         try:
-            data = mongo.db.Styles.find_one(query)
-            return jsonify(data), 200
+            data = mongo.db.Styles.find()
+            response = []
+            for document in data:
+                document['_id'] = str(document['_id'])
+                response.append(document)
+            return render_template("bills.html", response=response), 200
         except:
             return jsonify({'ok': False, 'message': 'Database unreachable'}), 500
 

@@ -5,6 +5,7 @@ import os
 from flask import request, jsonify, render_template
 from app import app, mongo
 import logger
+import json
 
 ROOT_PATH = os.environ.get('ROOT_PATH')
 LOG = logger.get_root_logger(
@@ -17,8 +18,11 @@ def products():
         query = request.args
         try:
             data = mongo.db.Products.find()
-            for documents in data:
-                return jsonify(documents), 200
+            response = []
+            for document in data:
+                document['_id'] = str(document['_id'])
+                response.append(document)
+            return render_template("bills.html", response=response), 200
         except:
             return jsonify({'ok': False, 'message': 'Database unreachable'}), 500
 
