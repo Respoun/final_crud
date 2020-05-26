@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+ <html lang="fr">
+
+ <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="description" content="">
+     <meta name="author" content="">
+     <link rel="icon" href="../../favicon.ico">
+     <script src="static/vendor/jquery/jquery.min.js"></script>
+
+     <title>Add product </title>
+
+ </head>
+
+ <body>
+
+     <div class="container">
+
+         <form class="form-signin" method="post" role="form">
+             <h2 class="form-signin-heading">Please fill </h2>
+             <input name="id" class="form-control" placeholder="ID" required autofocus>
+             <input name="name" class="form-control" placeholder="name" required >
+             <input name="price" class="form-control" placeholder="price" required >
+             <input name="stock" class="form-control" placeholder="stock" required >
+             <input name="id_brewery" class="form-control" placeholder="id_brewery" required >
+             <input name="id_style" class="form-control" placeholder="id_style" required >
+             <input name="id_country" class="form-control" placeholder="id_country" required >
+             <input name="id_pics" class="form-control" placeholder="id_pics" required >
+             <input name="id_bills" class="form-control" placeholder="id_bills" required autofocus>
+             <button id="send" class="btn btn-lg btn-primary btn-block" type="button">SEND </button>
+         </form>
+
+     </div>
+
+ </body>
+
+ <script>
+
+ $.fn.serializeObject = function(){
+     var o = {};
+     var a = this.serializeArray();
+     $.each(a, function() {
+         if (o[this.name] !== undefined) {
+             if (!o[this.name].push) {
+                 o[this.name] = [o[this.name]];
+             }
+             o[this.name].push(this.value || '');
+         } else {
+             o[this.name] = this.value || '';
+         }
+     });
+     return o;
+ };
+
+ $(function() {
+     $('#send').click(function() {
+         data = JSON.stringify($('form').serializeObject());
+         console.log(data);
+         $.ajax({
+             url: '/brewery',
+             data: data,
+             type: 'POST',
+             dataType : 'json',
+             success: function(response) {
+                 console.log(response);
+             },
+             error: function(error) {
+                 console.log(error);
+             }
+         });
+     });
+ });
+
+
+ </script>
+
+ </html>

@@ -1,4 +1,3 @@
-""" index file for REST APIs using Flask """
 import os
 import sys
 import requests
@@ -23,20 +22,43 @@ def not_found(error):
     LOG.error(error)
     return make_response(jsonify({'error': 'Not found'}), 404)
 
-
+'''
+GET ROUTES
+'''
 @app.route('/')
 def index():
-    """ static files serve """
     return send_from_directory('dist', 'index.html')
 
-@app.route('/add')
-def add():
-    return render_template('add.html')
+'''
+ADD ROUTES
+'''
+@app.route('/add_brewery')
+def add_brewery():
+    return send_from_directory('dist', 'add_brewery.html')
+
+@app.route('/add_user')
+def add_user():
+    return send_from_directory('dist', 'add_user.html')
+
+@app.route('/add_bill')
+def add_bill():
+    return send_from_directory('dist', 'add_bills.html')
+
+@app.route('/add_product')
+def add_product():
+    return send_from_directory('dist', 'add_product.html')
+
+@app.route('/add_style')
+def add_style():
+    return send_from_directory('dist', 'add_style.html')
+
+@app.route('/add_country')
+def add_country():
+    return send_from_directory('dist', 'add_country.html')
 
 
 @app.route('/<path:path>')
 def static_proxy(path):
-    """ static folder serve """
     file_name = path.split('/')[-1]
     dir_name = os.path.join('dist', '/'.join(path.split('/')[:-1]))
     return send_from_directory(dir_name, file_name)

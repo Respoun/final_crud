@@ -22,12 +22,13 @@ def products():
             for document in data:
                 document['_id'] = str(document['_id'])
                 response.append(document)
-            return render_template("bills.html", response=response), 200
+            return render_template("products.html", response=response), 200
         except:
             return jsonify({'ok': False, 'message': 'Database unreachable'}), 500
 
-    data = request.get_json()
+
     if request.method == 'POST':
+        data = request.get_json(force=True)
         if data.get('id', None) is not None and data.get('name', None) is not None and data.get('price', None) is not None:
             mongo.db.Products.insert_one(data)
             return jsonify({'ok': True, 'message': 'Product created successfully!'}), 200

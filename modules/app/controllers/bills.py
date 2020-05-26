@@ -24,8 +24,9 @@ def bills():
         except:
             return jsonify({'ok': False, 'message': 'Database unreachable'}), 500
 
-    data = request.get_json()
+
     if request.method == 'POST':
+        data = request.get_json(force=True)
         if data.get('id', None) is not None and data.get('client_id', None) is not None and data.get('sum', None) is not None:
             mongo.db.Bills.insert_one(data)
             return jsonify({'ok': True, 'message': 'Bills created successfully!'}), 200

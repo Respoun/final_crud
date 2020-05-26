@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+ <html lang="fr">
+
+ <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="description" content="">
+     <meta name="author" content="">
+     <link rel="icon" href="../../favicon.ico">
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+
+     <title>Add Bills</title>
+
+ </head>
+
+ <body>
+
+     <div class="container">
+
+         <form class="form-signin" method="post" role="form">
+             <h2 class="form-signin-heading">Please fill </h2>
+             <input name="id" class="form-control" placeholder="ID" required autofocus>
+             <input name="client_id" class="form-control" placeholder="client_id" required autofocus>
+             <input type="date" name="started_date" class="form-control" placeholder="started_date" required >
+             <input type="date" name="ended_date" class="form-control" placeholder="ended_date" required >
+             <input name="payed" class="form-control" placeholder="payed" required >
+             <input name="sum" class="form-control" placeholder="sum" required >
+             <input name="product_id" class="form-control" placeholder="product_id" required >
+
+             <button id="send" class="btn btn-lg btn-primary btn-block" type="button">SEND </button>
+         </form>
+
+     </div>
+
+ </body>
+
+<script>
+ $.fn.serializeObject = function(){
+     var o = {};
+     var a = this.serializeArray();
+     $.each(a, function() {
+         if (o[this.name] !== undefined) {
+             if (!o[this.name].push) {
+                 o[this.name] = [o[this.name]];
+             }
+             o[this.name].push(this.value || '');
+         } else {
+             o[this.name] = this.value || '';
+         }
+     });
+     return o;
+ };
+
+ $(function() {
+     $('#send').click(function() {
+         data = JSON.stringify($('form').serializeObject());
+         console.log(data);
+         $.ajax({
+             url: '/bills',
+             data: data,
+             type: 'POST',
+             dataType : 'json',
+             success: function(response) {
+                 console.log(response);
+             },
+             error: function(error) {
+                 console.log(error);
+             }
+         });
+     });
+ });
+
+
+ </script>
+
+ </html>

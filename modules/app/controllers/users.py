@@ -1,6 +1,6 @@
 ''' controller and routes for users '''
 import os
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 from app import app, mongo
 import logger
 import json
@@ -20,13 +20,13 @@ def user():
             for document in data:
                 document['_id'] = str(document['_id'])
                 response.append(document)
-            return render_template("bills.html", response=response), 200
+            return render_template("users.html", response=response), 200
         except:
             return jsonify({'ok': False, 'message': 'Database unreachable'}), 500
 
 
-    data = request.get_json()
     if request.method == 'POST':
+        data = request.get_json(force=True)
         if data.get('first_name', None) is not None and data.get('email', None) is not None and data.get('id', None) is not None:
             mongo.db.Customers.insert_one(data)
             return jsonify({'ok': True, 'message': 'User created successfully!'}), 200
