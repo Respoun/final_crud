@@ -3,13 +3,13 @@
   {% for data in response %}
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-                {{ data.id_pics }}
+              <img src="data:image/jpeg;base64,{{data.image}}" alt="img_data"  id="imgslot"/>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">{{ data.name }} </a>
+                  <a href="#">{{data.name}} </a>
                 </h4>
                 <h5>${{data.price}} </h5>
-                <p class="card-text"> Stock : {{data.stock }}</p>
+                <p class="card-text"> Stock : {{data.stock}}</p>
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>

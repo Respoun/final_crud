@@ -21,7 +21,9 @@ def products():
             response = []
             for document in data:
                 document['_id'] = str(document['_id'])
-                response.append(document)
+                img = mongo.db.Images.find_one({"id": document["id_pics"]})
+                full_data = {**document, **img}
+                response.append(full_data)
             return render_template("products.html", response=response), 200
         except:
             return jsonify({'ok': False, 'message': 'Database unreachable'}), 500
