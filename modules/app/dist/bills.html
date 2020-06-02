@@ -1,12 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% for data in response %}
-<p class="article-content">{{data}}</p>
-{%endfor%}
-</body>
-</html>
+{% extends"layout.html" %}
+{%block content %}
+  {% for data in response %}
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                  {{ data.client_id }}
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <p> date debut  : {{ data.started_date }} </p>
+                  </h4>
+                    <h4 class="card-title">
+                         <p class="card-text"> date fin : {{data.ended_date }} </p>
+                    </h4>
+                  <h5> validé : {{data.payed}} </h5>
+                    <p class="card-text"> Montant : {{data.sum }}</p>
+                     <div class="list-group">
+                        <p href="#" class="list-group-item">{{ data.product_id }}</p>
+                     </div>
+
+                </div>
+
+              </div>
+            </div>
+          <!-- /.row -->
+  {% endfor %}
+{% endblock content %}

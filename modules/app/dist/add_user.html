@@ -4,11 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-    <script src="static/vendor/jquery/jquery.min.js"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+     <script src="static/vendor/jquery/jquery.min.js"></script>
 
      <title>Add User</title>
 
@@ -20,12 +21,21 @@
 
          <form class="form-signin" method="post" role="form">
              <h2 class="form-signin-heading">Please fill </h2>
-             <input name="id" class="form-control" placeholder="ID" required autofocus>
-             <input name="first_name" class="form-control" placeholder="first_name" required autofocus>
-             <input name="last_name" class="form-control" placeholder="last_name" required >
-             <input type="email" name="email" class="form-control" placeholder="email" required >
-             <input type="date" name="creation_date" class="form-control" placeholder="creation_date" required >
-
+             <div class="form-group">
+                <input name="id" class="form-control" placeholder="ID" required autofocus>
+             </div>
+             <div class="form-group">
+                <input name="first_name" class="form-control" placeholder="first_name" required autofocus>
+             </div>
+             <div class="form-group">
+                <input name="last_name" class="form-control" placeholder="last_name" required >
+             </div>
+             <div class="form-group">
+                <input type="email" name="email" class="form-control" placeholder="email" required >
+             </div>
+             <div class="form-group">
+                <input type="date" name="creation_date" class="form-control" placeholder="creation_date" required >
+             </div>
              <button id="send" class="btn btn-lg btn-primary btn-block" type="button">SEND </button>
          </form>
 

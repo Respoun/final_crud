@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% for data in response %}
-<p class="article-content">{{data}}</p>
-{%endfor%}
-</body>
-</html>
+{% extends"layout.html" %}
+{%block content %}
+  {% for data in response %}
+   <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card-body">
+              <h4 class="card-title">
+                <p> NOM : {{ data.first_name}} </p>
+              </h4>
+                <h4 class="card-title">
+                     <p class="card-text"> Prenom : {{data.last_name }} </p>
+                </h4>
+              <h5> email : {{data.email}} </h5>
+                <p class="card-text"> création compte : {{data.creation_date }}</p>
+        </div>
+   </div>
+
+  {% endfor %}
+{% endblock content %}
