@@ -34,7 +34,8 @@ def user():
             return jsonify({'ok': False, 'message': 'Bad request parameters!'}), 400
 
     if request.method == 'DELETE':
-        if data.get('email', None) is not None:
+        data = request.get_json(force=True)
+        if data.get('id', None) is not None:
             db_response = mongo.db.Customers.delete_one({'id': data['id']})
             if db_response.deleted_count == 1:
                 response = {'ok': True, 'message': 'record deleted'}
@@ -45,6 +46,7 @@ def user():
             return jsonify({'ok': False, 'message': 'Bad request parameters!'}), 400
 
     if request.method == 'PATCH':
+        data = request.get_json(force=True)
         if data.get('query', {}) != {}:
             mongo.db.Customers.update_one(
                 data['query'], {'$set': data.get('payload', {})})

@@ -45,6 +45,7 @@ def bills():
             return jsonify({'ok': False, 'message': 'Bad request parameters!'}), 400
 
     if request.method == 'PATCH':
+        data = request.get_json(force=True)
         if data.get('query', {}) != {}:
             mongo.db.Bills.update_one(
                 data['query'], {'$set': data.get('payload', {})})

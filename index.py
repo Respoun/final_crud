@@ -56,6 +56,10 @@ def add_style():
 def add_country():
     return send_from_directory('dist', 'add_country.html')
 
+@app.route('/delete')
+def delete():
+    return send_from_directory('dist', 'delete.html')
+
 
 @app.route('/<path:path>')
 def static_proxy(path):

@@ -34,8 +34,9 @@ def countries():
             return jsonify({'ok': False, 'message': 'Bad request parameters!'}), 400
 
     if request.method == 'DELETE':
-        if data.get('name', None) is not None:
-            db_response = mongo.db.Countries.delete_one({'name': data['name']})
+        data = request.get_json(force=True)
+        if data.get('id', None) is not None:
+            db_response = mongo.db.Countries.delete_one({'id': data['id']})
             if db_response.deleted_count == 1:
                 response = {'ok': True, 'message': 'record deleted'}
             else:
@@ -45,6 +46,7 @@ def countries():
             return jsonify({'ok': False, 'message': 'Bad request parameters!'}), 400
 
     if request.method == 'PATCH':
+        data = request.get_json(force=True)
         if data.get('query', {}) != {}:
             mongo.db.Countries.update_one(
                 data['query'], {'$set': data.get('payload', {})})

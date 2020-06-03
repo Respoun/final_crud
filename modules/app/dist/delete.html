@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+ <html lang="fr">
+
+ <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+     <script src="static/vendor/jquery/jquery.min.js"></script>
+
+     <title>Delete Document</title>
+
+ </head>
+
+ <body>
+
+     <div class="container">
+
+         <form class="form-signin" method="post" role="form">
+             <h2 class="form-signin-heading">Please fill </h2>
+             <div class="form-group">
+                <input name="route" class="form-control" placeholder="/your_route" required autofocus>
+             </div>
+             <div class="form-group">
+                 <input name="id" class="form-control" placeholder="ID Document" required >
+             </div>
+             <button id="send" class="btn btn-lg btn-primary btn-block" type="button">DELETE</button>
+         </form>
+
+     </div>
+
+ </body>
+
+ <script>
+
+ $.fn.serializeObject = function(){
+     var o = {};
+     var a = this.serializeArray();
+     $.each(a, function() {
+         if (o[this.name] !== undefined) {
+             if (!o[this.name].push) {
+                 o[this.name] = [o[this.name]];
+             }
+             o[this.name].push(this.value || '');
+         } else {
+             o[this.name] = this.value || '';
+         }
+     });
+     return o;
+ };
+
+ $(function() {
+     $('#send').click(function() {
+         full_data = JSON.stringify($('form').serializeObject());
+         var obj = JSON.parse(full_data);
+         console.log(full_data);
+         var data = { id: obj.id };
+         json_data = JSON.stringify(data);
+         $.ajax({
+             url: obj.route,
+             data: json_data,
+             type: 'DELETE',
+             dataType : 'json',
+             success: function(response) {
+                 window.alert("Document successfully deleted !");
+                 console.log(response);
+             },
+             error: function(error) {
+                 console.log(error);
+             }
+         });
+     });
+ });
+
+
+ </script>
+
+ </html>
