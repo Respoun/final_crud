@@ -1,5 +1,5 @@
 '''
-controller and routes for Products (Beers)
+controller and routes for Products
 '''
 import os
 from flask import request, jsonify, render_template

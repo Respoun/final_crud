@@ -1,4 +1,4 @@
-''' controller and routes for bills '''
+''' controller and routes for countries'''
 import os
 from flask import request, jsonify, render_template
 from app import app, mongo

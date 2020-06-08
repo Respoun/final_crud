@@ -1,10 +1,8 @@
 # FINAL_CRUD
 
-## Projet UF IngéLog
+### Projet UF IngéLog
 
-## Python/flask CRUD
-
-## Run project with Docker
+### Python/flask CRUD
 
 ### Requirements:
 	Make sure you have:

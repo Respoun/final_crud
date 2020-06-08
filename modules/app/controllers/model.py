@@ -1,4 +1,4 @@
-''' controller and routes for model '''
+''' controller and routes for model'''
 import os
 from flask import request, jsonify
 from app import app, mongo
